@@ -7,6 +7,7 @@ const doubleStruckMap = {
 const convertBtn = document.getElementById('convertBtn');
 const inputText = document.getElementById('inputText');
 const outputText = document.getElementById('outputText');
+const copyBtn = document.getElementById('copyBtn');
 
 convertBtn.addEventListener('click', () => {
     const text = inputText.value;
@@ -16,4 +17,15 @@ convertBtn.addEventListener('click', () => {
         convertedText += doubleStruckMap[char] || char;
     }
     outputText.textContent = convertedText;
+});
+
+
+copyBtn.addEventListener('click', () => {
+    const textToCopy = outputText.textContent;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => {
+            copyBtn.textContent = 'Copy';
+        }, 2000);
+    });
 });
